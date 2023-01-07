@@ -15,6 +15,7 @@ code {
 .app-header {
   background-color: #3860aa;
   padding: 10px 20px;
+  margin-bottom: 20px;
 }
 
 .search-form-wrapper .search-form-container {
@@ -32,6 +33,7 @@ code {
   outline: none;
 }
 
+.back-button,
 button,
 .search-form-wrapper a {
   border: none;
@@ -45,6 +47,7 @@ button,
   height: 38px;
   line-height: 38px;
   outline: none;
+  display: inline-block;
 }
 
 .pokemon-list {
@@ -77,4 +80,43 @@ button,
   color: #000;
   font-size: 18px;
   font-weight: 600;
+}
+
+.navigation-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.pokemon-detail {
+  max-width: 1000px;
+  padding: 0 20px;
+  margin: 0 auto 20px auto;
+  display: flex;
+}
+
+.pokemon-detail h1 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.pokemon-image {
+  flex: 0 0 200px;
+}
+
+.pokemon-data {
+  flex: 1 1 auto;
+}
+
+.pokemon-data table th,
+.pokemon-data table td {
+  text-align: left;
+  padding: 5px 10px 5px 0;
+}
+
+h2,
+.pokemon-data table th {
+  font-weight: 600;
+  font-size: 16px;
 }

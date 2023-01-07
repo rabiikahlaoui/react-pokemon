@@ -28,46 +28,65 @@ export const PokemonDetails: React.FC<Props> = (props) => {
   if (error) {
     return (
       <div>
-        <Link to="/">Back</Link>
+        <Link to="/" className="back-button">
+          &lt; Back
+        </Link>
         <p>{error}</p>
       </div>
     );
   }
 
   if (!pokemon) {
-    return (
-      <div>
-        Loading
-      </div>
-    );
+    return <div>Loading</div>;
   }
 
   return (
     <div>
-      <Link to="/">Back</Link>
-      <h1>{pokemon.name}</h1>
-      <img src={pokemon.sprites.front_default} alt="Pokemon default front sprite" />
-      base_experience:
-      { pokemon.base_experience }
-      <br />
-      height:
-      { pokemon.height }
-      <br />
-      Weight:
-      { pokemon.weight }
-      <br />
-      Forms:
-      <ul>
-        {pokemon.forms.map((item: ApiData) => (
-            <li key={item.name}>{item.name}</li>
-        ))}
-      </ul>
-      Types:
-      <ul>
-        {pokemon.types.map((item: PokemonType) => (
-            <li key={item.slot}>{item.type.name}</li>
-        ))}
-      </ul>
+      <Link to="/" className="back-button">
+        &lt; Back
+      </Link>
+      <div className="pokemon-detail">
+        <div className="pokemon-image">
+          <img
+            src={pokemon.sprites.front_default}
+            alt="Pokemon default front sprite"
+          />
+        </div>
+        <div className="pokemon-data">
+          <h1>{pokemon.name}</h1>
+
+          <table>
+            <tbody>
+              <tr>
+                <th>Height: </th>
+                <td>{pokemon.height}</td>
+              </tr>
+              <tr>
+                <th>Weight: </th>
+                <td>{pokemon.weight}</td>
+              </tr>
+              <tr>
+                <th>Base experience: </th>
+                <td>{pokemon.base_experience}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>Forms:</h2>
+          <ul>
+            {pokemon.forms.map((item: ApiData) => (
+              <li key={item.name}>{item.name}</li>
+            ))}
+          </ul>
+
+          <h2>Types:</h2>
+          <ul>
+            {pokemon.types.map((item: PokemonType) => (
+              <li key={item.slot}>{item.type.name}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

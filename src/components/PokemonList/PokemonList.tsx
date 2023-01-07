@@ -63,13 +63,15 @@ export const PokemonList: React.FC<Props> = (props) => {
         ))}
       </div>
 
-      <button onClick={handlePrevClick} disabled={page === 1}>
-        Prev
-      </button>
-      {page} / {totalPages}
-      <button onClick={handleNextClick} disabled={page === totalPages}>
-        Next
-      </button>
+      <div className="navigation-buttons">
+        <button onClick={handlePrevClick} disabled={page === 1}>
+          Prev
+        </button>
+        {page} / {totalPages}
+        <button onClick={handleNextClick} disabled={page === totalPages}>
+          Next
+        </button>
+      </div>
     </>
   );
 };
