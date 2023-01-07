@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Pokemon, { ApiData } from "../../typeDefs/Pokemon";
 
 type Props = {};
 const itemsPerPage: number = 12;
 
 export const PokemonList: React.FC<Props> = (props) => {
-  const [pokemon, setPokemon] = useState<any>([]);
+  const [pokemon, setPokemon] = useState<ApiData[]>([]);
+  const [pokemonData, setPokemonData] = useState<Pokemon[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -14,22 +16,17 @@ export const PokemonList: React.FC<Props> = (props) => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon?offset=${(page - 1) * itemsPerPage}&limit=${itemsPerPage}`)
       .then((res) => {
-        setPokemon(res.data.results.map((item: any) => ({...item, loaded: false})));
+        setPokemon(res.data.results);
         setTotalPages(Math.ceil(res.data.count / itemsPerPage));
       });
   }, [page]);
 
   useEffect(() => {
     const fetchData = async () => {
-      if (pokemon.every((item:any) => item.loaded)) {
-        return;
-      }
-
       const promises = pokemon.map((p: any) => axios.get(`https://pokeapi.co/api/v2/pokemon/${p.name}`));
       const results = await Promise.all(promises);
       let data = results.map(res => res.data);
-      data = data.map((item: any) => ({...item, loaded: true}))
-      setPokemon(data);
+      setPokemonData(data);
     };
 
     fetchData();
@@ -50,12 +47,12 @@ export const PokemonList: React.FC<Props> = (props) => {
   return (
     <>
       <ul>
-        {pokemon.map((p: any) => (
+        {pokemonData.map((p: Pokemon) => (
           <>
             <Link key={p.name} to={p.name}>
-              {p.name}
+                {p.name}
+                <img src={p.sprites.front_default} alt="Pokemon default front sprite" />
             </Link>
-            <br />
           </>
         ))}
       </ul>
