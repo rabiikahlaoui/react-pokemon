@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Pokemon, { ApiData } from "../../typeDefs/Pokemon";
+import PokemonItem from "./PokemonItem";
 
 type Props = {};
 const itemsPerPage: number = 12;
@@ -14,7 +15,11 @@ export const PokemonList: React.FC<Props> = (props) => {
 
   useEffect(() => {
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon?offset=${(page - 1) * itemsPerPage}&limit=${itemsPerPage}`)
+      .get(
+        `https://pokeapi.co/api/v2/pokemon?offset=${
+          (page - 1) * itemsPerPage
+        }&limit=${itemsPerPage}`
+      )
       .then((res) => {
         setPokemon(res.data.results);
         setTotalPages(Math.ceil(res.data.count / itemsPerPage));
@@ -23,9 +28,11 @@ export const PokemonList: React.FC<Props> = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const promises = pokemon.map((p: any) => axios.get(`https://pokeapi.co/api/v2/pokemon/${p.name}`));
+      const promises = pokemon.map((p: any) =>
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${p.name}`)
+      );
       const results = await Promise.all(promises);
-      let data = results.map(res => res.data);
+      let data = results.map((res) => res.data);
       setPokemonData(data);
     };
 
@@ -46,23 +53,20 @@ export const PokemonList: React.FC<Props> = (props) => {
 
   return (
     <>
-      <ul>
+      <div className="pokemon-list">
         {pokemonData.map((p: Pokemon) => (
-          <>
-            <Link key={p.name} to={p.name}>
-                {p.name}
-                <img src={p.sprites.front_default} alt="Pokemon default front sprite" />
-            </Link>
-          </>
+          <PokemonItem
+            key={p.name}
+            name={p.name}
+            image={p.sprites.front_default}
+          />
         ))}
-      </ul>
+      </div>
 
       <button onClick={handlePrevClick} disabled={page === 1}>
         Prev
       </button>
-
-      { page } / { totalPages }
-
+      {page} / {totalPages}
       <button onClick={handleNextClick} disabled={page === totalPages}>
         Next
       </button>

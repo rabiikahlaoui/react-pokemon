@@ -13,10 +13,12 @@ export const PokemonSearch: React.FC<Props> = (props) => {
 
   return (
     <>
-      <div>
+      <div className="search-form-wrapper">
         <form>
-          <input type="text" value={search} onChange={handleSearchChange} />
-          <Link to={`/${search}`}>Search</Link>
+            <div className="search-form-container">
+                <input placeholder="Search ..." type="text" value={search} onChange={handleSearchChange} />
+                <Link to={`/${search}`}>Search</Link>
+            </div>
         </form>
       </div>
     </>

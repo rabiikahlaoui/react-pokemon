@@ -7,7 +7,9 @@ import PokemonSearch from './components/PokemonSearch/PokemonSearch';
 function App() {
   return (
     <div className="App">
-      <PokemonSearch />
+      <div className='app-header'>
+        <PokemonSearch />
+      </div>
       <Routes>
         <Route path="/:name" element={<PokemonDetails />} />
         <Route path="/" element={<PokemonList />} />

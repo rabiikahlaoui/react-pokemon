@@ -11,3 +11,70 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.app-header {
+  background-color: #3860aa;
+  padding: 10px 20px;
+}
+
+.search-form-wrapper .search-form-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-form-wrapper input {
+  border: none;
+  padding: 0 12px;
+  flex-grow: 1;
+  border-radius: 4px;
+  height: 38px;
+  line-height: 38px;
+  outline: none;
+}
+
+button,
+.search-form-wrapper a {
+  border: none;
+  background-color: #f3cb10;
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 0 16px;
+  padding: 0 16px;
+  border-radius: 4px;
+  height: 38px;
+  line-height: 38px;
+  outline: none;
+}
+
+.pokemon-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center
+}
+
+.pokemon-item {
+  width: 300px;
+  text-align: center;
+  background-color: #EEE;
+  padding: 20px;
+  border-radius: 10px;  
+}
+
+.pokemon-item a{
+  text-decoration: none;
+}
+
+.pokemon-item image{
+  display: block;
+  width: 100px;
+}
+
+.pokemon-item span{
+  display: block;
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+}
